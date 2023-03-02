@@ -3,8 +3,8 @@ class Sprite{
     position,
     imageSrc,
     scale = 1,
-    framesMax = 1
-    offset = {x:0, y:0}
+    framesMax = 1,
+     offset = {x:0, y:0}
   }) {
     this.position = position
     this.width = 50
@@ -106,7 +106,7 @@ class Fighter extends Sprite {
 
    
     this.attackBox.position.x = this.position.x + this.attackBox.offset.x
-    this.attackBox.position.y = this.position.y + this.attackBox.offset.
+    this.attackBox.position.y = this.position.y + this.attackBox.offset.y
 
     this.position.x += this.velocity.x
     this.position.y += this.velocity.y

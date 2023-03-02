@@ -5,7 +5,7 @@ canvas.width = 1024
 canvas.height = 576
 
 context.fillRect(0,0,canvas.width,canvas.height)
-const gravity = 0.25
+const gravity = 0.5
 
 
 const background = new Sprite({
@@ -26,29 +26,6 @@ const shop = new Sprite({
   frameMax: 6
 })
 
-
-class Sprite{
-  constructor({position, velocity}){
-    this.position=position
-    this.velocity=velocity
-    this.height = 150
-  }
-  draw(){
-    context.fillStyle='red'
-    context.fillRect(this.position.x,this.position.y,50, this.height)
-  }
-  update() {
-    this.draw()
-
-    this.position.x += this.velocity.x
-    this.position.y += this.velocity.y
-    if(this.position.y + this.height + this.velocity.y >= canvas.height){
-      this.velocity.y = 0
-    } else this.velocity.y += gravity
-
-  }
-}
-  
 
 const player = new Fighter({
   position: {
@@ -190,7 +167,7 @@ const keys = {
 }
 
 decreaseTimer()
-//let lastKey 
+
 
 function animate() {
   window.requestAnimationFrame(animate)
@@ -231,6 +208,8 @@ function animate() {
   } else{
     enemy.switchSprite('idle')
   }
+
+
   if (enemy.velocity.y < 0) {
     enemy.switchSprite('jump')
   } else if (enemy.velocity.y > 0) {
@@ -281,6 +260,24 @@ animate()
 
 window.addEventListener( 'keydown', (event) => {
   if(!player.dead) {
+    switch(event.key) {
+      case 'd':
+        keys.d.pressed =true
+        player.lastKey='d'
+        break
+      case 'a':
+        keys.d.pressed =true
+        player.lastKey='a'
+        break
+      case 'w':
+        player.velocity.y=-20
+        break
+      case ' ':
+        player.attack()
+        break
+    }
+  }
+  if(!enemy.dead) {
     switch(event.key) {
       case 'ArrowRight':
         keys.d.pressed =true

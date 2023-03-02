@@ -7,6 +7,26 @@ canvas.height = 576
 context.fillRect(0,0,canvas.width,canvas.height)
 const gravity = 0.25
 
+
+const background = new Sprite({
+  position: {
+    x:0,
+    y:0
+  },
+  imageSrc: ''
+})
+
+const shop = new Sprite({
+  position: {
+    x: 600,
+    y: 128
+  },
+  imageSrc: 
+  scale: 2.75,
+  frameMax: 6
+})
+
+
 class Sprite{
   constructor({position, velocity}){
     this.position=position
@@ -30,7 +50,7 @@ class Sprite{
 }
   
 
-const player = new Sprite({
+const player = new Fighter({
   position: {
   x:0,
   y:0
@@ -38,13 +58,57 @@ const player = new Sprite({
 velocity: {
   x:0,
   y:0
+},
+offset: {
+  x: 0,
+  y: 0
+},
+imageSrc:
+framesMax:8 ,
+scale: 2.5,
+offset: {
+  x:217,
+  y:160
+},
+sprites: {
+  idle: {
+    imageSrc:
+    frameMax: 8
+  },
+  jump: {
+    imageSrc:
+    framesMax: 2
+  },
+  fall: {
+    imageSrc:
+    frameMax:2
+  },
+  attack1:{
+    imageSrc:
+    frameMax:6
+  },
+  takeHit:{
+    imageSrc:
+    frameMax:4
+  },
+  death:{
+    imageSrc:
+    frameMax:6
+  }
+},
+attackbox: {
+  offset: {
+    x:100,
+    y:50
+  },
+  width:160,
+  height: 50
 }
-
 })
 
 
 
-const enemy = new Sprite({
+const enemy = new Fighter({
   position: {
   x:400,
   y:100
@@ -52,9 +116,60 @@ const enemy = new Sprite({
 velocity: {
   x:0,
   y:0
-}
+},
+color: 'blue',
+offset: {
+  x:-50,
+  y:0
+},
+imageSrc:
+framesMax:4,
+scale:2.5,
+offset: {
+  x:215,
+  y:167
+},
+sprites: {
+  idle: {
+    imageSrc:
+    frameMax: 4
+  },
+  run: {
+    imageSrc:
+    framesMax:8
+  },
+  jump: {
+    imageSrc:
+    framesMax: 2
+  },
+  fall: {
+    imageSrc:
+    frameMax:2
+  },
+  attack1:{
+    imageSrc:
+    frameMax:4
+  },
+  takeHit:{
+    imageSrc:
+    frameMax:3
+  },
+  death:{
+    imageSrc:
+    frameMax:7
+  }
+  },
 
+attackbox: {
+  offset: {
+    x:-170,
+    y:50
+  },
+  width:170,
+  height: 50
+}
 })
+
 
 
 console.log(player)
@@ -65,28 +180,61 @@ const keys = {
   }, 
   d: {
     pressed: false
+  },
+  ArrowRight: {
+    pressed: false
+  },
+  ArrowLeft: {
+    pressed: false
   }
-
 }
-let lastKey 
+
+decreaseTimer()
+//let lastKey 
 
 function animate() {
   window.requestAnimationFrame(animate)
   context.fillStyle = 'black'
   context.fillRect(0,0,canvas.width,canvas.height)
+  background.update()
+  shop.update()
+  context.fillStyle='rgba(255,255,255,0.15)'
+  context.fillRect(0,0,canvas.width,canvas.height)
   player.update()
   enemy.update()
 
   player.velocity.x = 0
+  enemy.velocity.x=0
 
   if(keys.a.pressed && lastKey === 'a') {
-    player.velocity.x = -1
+    player.velocity.x = -5
+    player.switchSprite('run')
   } else if(keys.d.pressed && lastKey === 'd') {
-    player.velocity.x = 1
+    player.velocity.x = 5
+    player.switchSprite('run')
+  } else {
+    player.switchSprite('idle')
+  }
+
+  if(player.velocity.y<0){
+    player.switchSprite('jump')
+  } else if(player.velocity>0){
+    player.switchSprite('fall')
+  }
+
+  if(keys.ArrowLeft.pressed && enemy.lastKey==='ArrowLeft'){
+    enemy.velocity.x=-5
+    enemy.switchSprite('run')
+  } else if(keys.ArrowRight.pressed && enemy.lastKey==='ArrowRight'){
+    enemy.velocity.x=5
+    enemy.switchSprite('run')
+  } else{
+    enemy.switchSprite('idle')
   }
 }
 
-animate()
+
+//animate()
 
 window.addEventListener( 'keydown', (event) => {
 switch(event.key) {

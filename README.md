@@ -1,6 +1,24 @@
-# Versus
-A simple 1on1 fighting game created by using HTML and JS.
+# VERSUS
 
-a,w,d(left side)|up,left,right arrow keys(right side) for movement|space and down(arrow key) to attack 
+## Game Description
 
-https://surkhabsingh.github.io/CSSJS-game/
+A simple 1-on-1 fighting game where players control their characters using the provided controls and engage in combat to defeat their opponent.
+
+## Tech Stack
+
+- JavaScript
+- GSAP
+- Three.js
+- Framer Motion
+
+## Features
+
+- Integrated GSAP for seamless and visually striking animations, enhancing the overall gaming experience.
+- Utilized Three.js to create immersive 3D graphics, elevating the game’s visual appeal within the browser environment.
+
+## Gameplay Controls
+
+- **Left Side Controls (Player 1):** `a`, `w`, `d` keys for movement. `Space` key to attack.
+- **Right Side Controls (Player 2):** `Up`, `Left`, `Right` arrow keys for movement. `Down` arrow key to attack.
+
+Demo Link - https://surkhabsingh.github.io/Versus/

@@ -231,6 +231,37 @@ function animate() {
   } else{
     enemy.switchSprite('idle')
   }
+  if (enemy.velocity.y < 0) {
+    enemy.switchSprite('jump')
+  } else if (enemy.velocity.y > 0) {
+    enemy.switchSprite('fall')
+  }
+
+  if(
+    rectangularCollision({
+      rectangle1: player,
+      rectangle2: enemy,
+      }) &&
+      player.isAttacking && 
+      player.framesCurrent===4
+  ) {
+    enemy.takeHit()
+    player.isAttacking = false
+    gsap.to('#enemyHealth', {
+      width: enemy.health +'%'
+    })
+  }
+
+  if(player.isAttacking && player.framesCurrent===4){
+    player.isAttacking = false
+  }
+
+  if(
+    rectangularCollision({
+      rectangle1: enemy,
+      rectangle2: player
+    })
+  )
 }
 
 

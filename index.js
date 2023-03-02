@@ -260,35 +260,43 @@ function animate() {
     rectangularCollision({
       rectangle1: enemy,
       rectangle2: player
+    }) &&
+    enemy.isAttacking &&
+    enemy.framesCurrent===2
+  ) {
+    player.takeHit()
+    enemy.isAttacking = false
+    gsap.to('#playerHealth', {
+      width: player.health +'%'
     })
-  )
+  }
+
+  if(enemy.health<=0 || player.health<=0){
+    determineWinner()
+  }
 }
 
 
-//animate()
+animate()
 
 window.addEventListener( 'keydown', (event) => {
-switch(event.key) {
-  case 'd' :
-  keys.d.pressed = true 
-  lastKey='d'
-  break
-  case 'a' :
-  keys.a.pressed = true 
-  lastKey='a'
-  break
-}
-console.log(event.key)
-})
-
-window.addEventListener( 'keyup', (event) => {
-  switch(event.key) {
-    case 'd' :
-      keys.d.pressed = false
-    break
-    case 'a' :
-      keys.a.pressed = false 
-    break
+  if(!player.dead) {
+    switch(event.key) {
+      case 'ArrowRight':
+        keys.d.pressed =true
+        player.lastKey='Arrowright'
+        break
+      case 'ArrowLeft':
+        keys.d.pressed =true
+        player.lastKey='ArrowLeft'
+        break
+      case 'ArrowUp':
+        player.velocity.y=-20
+        break
+      case 'ArrowDown ':
+        player.attack()
+        break
+    }
   }
-  console.log(event.key)
-  })
+})
+  

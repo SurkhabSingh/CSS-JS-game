@@ -13,7 +13,7 @@ const background = new Sprite({
     x:0,
     y:0
   },
-  imageSrc: ''
+  imageSrc: './img/background.png'
 })
 
 const shop = new Sprite({
@@ -21,7 +21,7 @@ const shop = new Sprite({
     x: 600,
     y: 128
   },
-  imageSrc: 
+  imageSrc:'./img/shop.png' ,
   scale: 2.75,
   frameMax: 6
 })
@@ -40,7 +40,7 @@ offset: {
   x: 0,
   y: 0
 },
-imageSrc:
+imageSrc:'./img/samuraiMack/Idle.png',
 framesMax:8 ,
 scale: 2.5,
 offset: {
@@ -49,27 +49,31 @@ offset: {
 },
 sprites: {
   idle: {
-    imageSrc:
+    imageSrc:'./img/samuraiMack/Idle.png',
     frameMax: 8
   },
+  run:{
+    imageSrc:'./img/samuraiMack/Run.png',
+    framesMax:8
+  },
   jump: {
-    imageSrc:
+    imageSrc:'./img/samuraiMack/Jump.png',
     framesMax: 2
   },
   fall: {
-    imageSrc:
+    imageSrc:'./img/samuraiMack/Fall.png',
     frameMax:2
   },
   attack1:{
-    imageSrc:
+    imageSrc:'./img/samuraiMack/Attack1.png',
     frameMax:6
   },
   takeHit:{
-    imageSrc:
+    imageSrc:'./img/samuraiMack/Take Hit - white silhouette.png',
     frameMax:4
   },
   death:{
-    imageSrc:
+    imageSrc:'./img/samuraiMack/Death.png',
     frameMax:6
   }
 },
@@ -99,7 +103,7 @@ offset: {
   x:-50,
   y:0
 },
-imageSrc:
+imageSrc:'./img/kenji/Idle.png',
 framesMax:4,
 scale:2.5,
 offset: {
@@ -108,31 +112,31 @@ offset: {
 },
 sprites: {
   idle: {
-    imageSrc:
+    imageSrc:'./img/kenji/Idle.png',
     frameMax: 4
   },
   run: {
-    imageSrc:
+    imageSrc:'./img/kenji/Run.png',
     framesMax:8
   },
   jump: {
-    imageSrc:
+    imageSrc:'./img/kenji/Jump.png',
     framesMax: 2
   },
   fall: {
-    imageSrc:
+    imageSrc:'./img/kenji/Fall.png',
     frameMax:2
   },
   attack1:{
-    imageSrc:
+    imageSrc:'./img/kenji/Attack1.png',
     frameMax:4
   },
   takeHit:{
-    imageSrc:
+    imageSrc:'./img/kenji/Take hit.png',
     frameMax:3
   },
   death:{
-    imageSrc:
+    imageSrc:'./img/kenji/Death.png',
     frameMax:7
   }
   },

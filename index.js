@@ -299,4 +299,23 @@ window.addEventListener( 'keydown', (event) => {
     }
   }
 })
-  
+
+window.addEventListener('keyup',(event) =>{
+  switch(event.key) {
+    case 'd':
+      keys.d.pressed = false
+      break
+    case 'a':
+      keys.a.pressed = false
+      break
+  }
+
+  switch(event.key){
+    case 'ArrowRight':
+      keys.ArrowRight.pressed = false
+      break
+    case 'ArrowLeft':
+      keys.ArrowLeft.pressed = false
+      break
+  }
+})
